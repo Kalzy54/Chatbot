@@ -9,8 +9,10 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11
+      - key: PYTHONPATH
+        value: /opt/render/project/src
       - key: EMBEDDING_MODEL
-        value: sentence-transformers/all-mpnet-base-v2
+        value: all-MiniLM-L6-v2
       - key: CHUNK_SIZE_TOKENS
         value: 900
       - key: CHUNK_OVERLAP_TOKENS
