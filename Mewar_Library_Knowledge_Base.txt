@@ -1,0 +1,390 @@
+================================================================================
+MEWAR INTERNATIONAL UNIVERSITY LIBRARY - COMPLETE KNOWLEDGE BASE
+================================================================================
+Last Updated: February 26, 2026
+Institution: Mewar International University, Nigeria
+Library Email: miulibrary2025@gmail.com
+
+================================================================================
+SECTION 1: LIBRARY OVERVIEW & MISSION
+================================================================================
+
+1.1 VISION STATEMENT
+To be a modern and technology-driven university library that provides easy and 
+timely access to knowledge and information, supporting teaching, learning, and 
+research excellence at Mewar International University, Nigeria.
+
+1.2 MISSION STATEMENT
+Our mission is to enhance learning and research at Mewar International University, 
+Nigeria by providing efficient access to library resources through a well-organized 
+digital management system. We are committed to promoting academic growth, 
+encouraging innovation, and ensuring that students, staff, and researchers can 
+easily find and use information resources whenever they need them.
+
+1.3 CORE VALUES
+- Accessibility: Easy access to knowledge and information
+- Innovation: Technology-driven services and systems
+- Excellence: Supporting academic and research quality
+- Integrity: Transparent and professional service delivery
+
+================================================================================
+SECTION 2: OPERATING HOURS & CONTACT INFORMATION
+================================================================================
+
+2.1 LIBRARY HOURS OF OPERATION
+Monday to Friday: 8:00 AM - 10:00 PM
+Saturday: Closed
+Sunday: Closed
+Holiday Hours: Closed
+
+2.2 CONTACT INFORMATION
+Email: miulibrary2025@gmail.com
+Website: binghamuni.edu.ng/library/index.php/about-us/about-the-library
+
+================================================================================
+SECTION 3: BORROWING POLICIES & LENDING SERVICES
+================================================================================
+
+3.1 LENDING POLICY - GENERAL INFORMATION
+Loan Period: 7 days for all categories of users (students, staff, researchers)
+Maximum Items: Varies by user category (consult library staff for details)
+Renewal Policy: Renewal is allowed, subject to availability
+Late Fees: Applied to overdue materials (rates available at circulation desk)
+Lost/Damaged Items: User is responsible for replacement or payment
+
+3.2 WHO CAN BORROW
+- Current Students (undergraduate and postgraduate)
+- Academic and Non-Academic Staff
+- Registered Researchers
+- Alumni (with proof of affiliation)
+- External Borrowers (subject to verification and deposit)
+
+3.3 HOW TO BORROW
+1. Ensure you have a valid library card/student ID
+2. Locate the book using the library catalog in ERP system
+3. Bring the item to the circulation desk
+4. Staff will scan your ID and the book
+5. You will receive a receipt with due date
+
+3.4 LOAN RENEWAL
+- Renew before due date for extended borrowing
+- Renewal allowed if item is not reserved by another user
+- Renew online through library portal or in-person at circulation desk
+
+================================================================================
+SECTION 4: LIBRARY SERVICES & FACILITIES
+================================================================================
+
+4.1 AVAILABLE SERVICES
+1. Lending Service - Borrow books, journals, and materials
+2. Inter-Library Loan Service - Request materials from partner institutions
+3. Referral Service - Guide users to relevant resources and services
+4. Research Support Assistant Service - Help with research methodology and tools
+5. Selective Dissemination of Information Service - Customized content delivery
+6. Current Awareness Service - Updates on new acquisitions and topics
+7. Accessible Digital Resources Service - Online access to e-books and databases
+8. Reprograph Service - Photocopying and document scanning
+9. Bindery Service - Book binding and repair services
+10. Information and Digital Literacy Service - Training on information skills
+11. Reference Service (Real-time and Offline) - Direct assistance from librarians
+
+4.2 REAL-TIME REFERENCE SERVICE (Ask a Librarian 1)
+- Get immediate answers from reference librarians
+- Ask questions about research, citations, and resource location
+- Available during library operating hours
+- Contact: Email miulibrary2025@gmail.com or visit in-person
+
+4.3 OFFLINE REFERENCE SERVICE (Ask a Librarian 2)
+- Submit questions for later response
+- Useful for complex research queries
+- Typical response time: 24-48 hours
+- Contact: Email miulibrary2025@gmail.com with subject "Reference Query"
+
+================================================================================
+SECTION 5: ACCESSING THE LIBRARY CATALOG
+================================================================================
+
+5.1 LIBRARY CATALOG & BOOK DISCOVERY
+The Mewar University Library Catalog is integrated with the university ERP system
+
+STEPS TO ACCESS:
+1. Log in to the Mewar International University ERP Portal
+2. Navigate to "Library" section in the main menu
+3. Click on "Book List" icon
+4. Enter search terms in the provided search space
+
+5.2 SEARCH OPTIONS
+Users can search and browse books by:
+- Author Name (search by last name or full name)
+- Book Title (search by exact title or keywords)
+- Subject/Subject Area (browse by discipline or topic)
+
+5.3 SEARCH TIPS
+- Use author's last name for author searches
+- Use keywords for broader title searches
+- Subject search helps discover related materials
+- Consult library staff for search assistance
+
+================================================================================
+SECTION 6: LIBRARY STAFF DIRECTORY
+================================================================================
+
+6.1 LIBRARY ADMINISTRATION & STAFF
+
+Position: University Librarian
+Name: Aliyu Dogara Mohammed
+Gender: Male
+State of Origin: Borno State
+
+Position: Director E-Library
+Name: Jimoh Lukman Braimah
+Gender: Male
+State of Origin: Edo State
+
+Position: Higher Library Officer
+Name: Aishatu Abdulrahman
+Gender: Female
+State of Origin: Adamawa State
+
+Position: Library Officer I
+Name: Akor Gloria Ene
+Gender: Female
+State of Origin: Benue State
+
+Position: Library Officer I
+Name: Mukhtar Sarki Ibrahim
+Gender: Male
+State of Origin: Kano State
+
+Position: Library Officer II
+Name: Prisca Philip
+Gender: Female
+State of Origin: Kaduna State
+
+Position: Graduate Assistant
+Name: Daniel Abel Edoih
+Gender: Male
+State of Origin: Benue State
+
+6.2 KEY STAFF RESPONSIBILITIES
+- University Librarian: Overall library management and strategic planning
+- Director E-Library: Digital resources and online services
+- Higher Library Officer: Senior operational responsibilities
+- Library Officers: General library operations and user services
+- Graduate Assistant: Support duties and basic library services
+
+================================================================================
+SECTION 7: INSTITUTIONAL REPOSITORY
+================================================================================
+
+7.1 INSTITUTIONAL REPOSITORY OVERVIEW
+Purpose: Preserve and provide access to university research outputs and 
+intellectual contributions
+
+7.2 REPOSITORY PLATFORM
+Platform Software: DSpace (open-source digital library system)
+Host Institution: Mewar International University
+Content Types: Academic publications, research papers, theses, institutional 
+documents
+
+7.3 REPOSITORY MANAGEMENT PROCESS
+PHASE 1: Establishment
+- University academic director convenes academic meeting
+- Solicit research articles and publications from all academic staff
+- Formulate institutional repository policy
+- Establish repository committee
+
+PHASE 2: Staff Training
+- Library staff training on DSpace platform operations
+- Training on publication upload procedures
+- Quality assurance and metadata standards
+- Ongoing maintenance and access control
+
+7.4 SUBMISSION PROCESS FOR RESEARCHERS
+1. Register content with library staff
+2. Provide publication details (title, author, date, abstract)
+3. Submit digital file to designated staff member
+4. Library staff reviews and uploads to DSpace
+5. Content becomes publicly accessible
+
+================================================================================
+SECTION 8: DIGITAL RESOURCES & E-LIBRARY SERVICES
+================================================================================
+
+8.1 ACCESSIBLE DIGITAL RESOURCES
+The library provides access to:
+- E-books and digital publications
+- Online academic databases
+- Journal articles and research papers
+- Multimedia educational resources
+- Licensed databases (access restricted to MIU affiliates)
+
+8.2 E-LIBRARY FEATURES
+- 24/7 Online Access (for registered users)
+- Remote Access (VPN available for off-campus access)
+- Citation Tools and Databases (APA, MLA, Chicago style)
+- Digital Archive of University Publications
+- Open Access Resources (free scholarly materials)
+
+8.3 HOW TO ACCESS E-LIBRARY
+1. Visit the library website
+2. Log in with student/staff ID
+3. Select desired database or resource
+4. Browse or search using provided tools
+5. Download or bookmark items
+
+================================================================================
+SECTION 9: ADDITIONAL LIBRARY SERVICES
+================================================================================
+
+9.1 REPROGRAPH SERVICE
+Purpose: Photocopying and document scanning
+Available: During library operating hours
+Process: Bring original documents to reprographics counter
+Costs: Standard rates apply (consult staff for pricing)
+
+9.2 BINDERY SERVICE
+Purpose: Book binding and repair
+Suitable for: Dissertations, theses, personal collections
+Services Include: Binding, rebinding, spine repair
+Turnaround Time: 3-5 business days (varies by complexity)
+
+9.3 INFORMATION & DIGITAL LITERACY TRAINING
+Workshops Cover:
+- How to use library catalog
+- Database navigation and searching
+- Citation management tools
+- Research methodology
+- Information evaluation skills
+- Digital resource access
+
+Sessions Offered:
+- Group workshops (regularly scheduled)
+- Individual consultations (by appointment)
+- Online tutorials (available on website)
+
+================================================================================
+SECTION 10: FREQUENTLY ASKED QUESTIONS & SUPPORT
+================================================================================
+
+10.1 GENERAL QUESTIONS
+Q: What is the loan period for books?
+A: 7 days for all categories of users (students, staff, researchers)
+
+Q: Can I renew my borrowed materials?
+A: Yes, renewal is allowed subject to availability. Renew before the due date.
+
+Q: What are the library hours?
+A: Monday to Friday, 8:00 AM to 10:00 PM. Closed on weekends and holidays.
+
+Q: How do I access the library catalog?
+A: Log into the university ERP portal, go to Library section, click Book List 
+   icon, and search by author, title, or subject.
+
+Q: How do I contact the library?
+A: Email: miulibrary2025@gmail.com or visit during operating hours.
+
+10.2 ADVANCED QUESTIONS
+Q: How do I request materials not in our catalog?
+A: Use our Inter-Library Loan Service. Contact library staff for forms.
+
+Q: How do I access digital resources from home?
+A: Register for remote access. VPN credentials available from IT department.
+
+Q: Can I submit my research to the institutional repository?
+A: Yes, contact the library staff or Director of E-Library with your publication.
+
+10.3 RESEARCH & ACADEMIC SUPPORT
+Q: Who can help with my research project?
+A: Ask a Librarian services (real-time or offline) provide research assistance.
+
+Q: How do I learn about citations and bibliography?
+A: Attend Information & Digital Literacy workshops or ask reference staff.
+
+Q: What databases are available for my field of study?
+A: Consult with subject librarians or email miulibrary2025@gmail.com
+
+================================================================================
+SECTION 11: USER ACCOUNT & LIBRARY CARD INFORMATION
+================================================================================
+
+11.1 LIBRARY ACCOUNT SETUP
+- All registered students and staff automatically have library accounts
+- Account linked to student/staff ID number
+- Physical library card can be obtained at circulation desk
+- Card required for borrowing physical materials
+
+11.2 ACCOUNT MANAGEMENT
+- Check borrowed items and due dates online (via ERP portal)
+- View fines and payment status
+- Renew materials through account portal
+- Update contact information with library staff
+
+11.3 LIBRARY ID REQUIREMENTS
+Must have valid identification:
+- Student ID Card
+- Staff ID Card
+- Valid National ID (for external users)
+- Passport (for international visitors)
+
+================================================================================
+SECTION 12: ADDITIONAL RESOURCES & FURTHER HELP
+================================================================================
+
+12.1 WEBSITE & ONLINE RESOURCES
+Main Library Website: binghamuni.edu.ng/library/index.php/about-us/about-the-library
+Online Catalog: Available through university ERP system
+Tutorials Bundle: Learning guides and video tutorials (on website)
+
+12.2 GET MORE HELP
+For questions not covered here:
+- Visit the library during operating hours
+- Email: miulibrary2025@gmail.com
+- Call university main line and ask for library extension
+- Visit the "Ask a Librarian" desk in person
+- Check the library website for latest updates
+
+12.3 LIBRARY IMPROVEMENT & FEEDBACK
+We value your feedback:
+- Complete feedback forms at circulation desk
+- Email suggestions to miulibrary2025@gmail.com
+- Attend library advisory meetings (announced regularly)
+- Follow library announcements on university portal
+
+================================================================================
+SECTION 13: QUICK REFERENCE - COMMON TASKS
+================================================================================
+
+BORROW A BOOK:
+1. Find book in ERP catalog
+2. Bring to circulation desk with ID
+3. Staff scans materials
+4. Receive receipt with due date (7 days)
+
+RENEW BORROWED MATERIALS:
+1. Contact library before due date
+2. Check item is not on reserve
+3. Renewal via portal or in-person
+4. Receive new due date
+
+SEARCH FOR MATERIALS:
+1. Log into university ERP
+2. Navigate to Library section
+3. Click Book List
+4. Search by: Author, Title, or Subject
+5. Results show location and availability
+
+CONTACT LIBRARY STAFF:
+- Email: miulibrary2025@gmail.com
+- Visit: Monday-Friday, 8:00 AM - 10:00 PM
+- Ask: At reference desk or "Ask a Librarian" service
+
+REQUEST SPECIAL SERVICE:
+- Inter-Library Loan: Contact circulation desk
+- Research Support: Email reference desk
+- Digital Access: Contact E-Library director
+- Binding Service: Submit form at library counter
+
+================================================================================
+END OF KNOWLEDGE BASE
+================================================================================

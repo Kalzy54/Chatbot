@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: mewarchat-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 1 -k uvicorn.workers.UvicornWorker --timeout 300 app.main:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: EMBEDDING_MODEL
+        value: sentence-transformers/all-mpnet-base-v2
+      - key: CHUNK_SIZE_TOKENS
+        value: 900
+      - key: CHUNK_OVERLAP_TOKENS
+        value: 300
+      - key: SIMILARITY_THRESHOLD
+        value: "0.35"
+      - key: TOP_K
+        value: "8"
+      - fromGroup: secrets
+        key: OPENAI_API_KEY
+      - fromGroup: secrets
+        key: UNIVERSITY_WEB_URL

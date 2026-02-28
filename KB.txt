@@ -1,0 +1,62 @@
+Lending Policy:
+Loan Period:7 days for all categories of users
+Renewal Policy: Renewal allowed, subject to availability
+
+OpeningHours:
+Monday to Friday: 8:00 AM - 10:00 PM
+
+ABOUT LIBRARY
+Vision Statement
+To be a modern and technology-driven university library that provides easy and timely access to knowledge and information, supporting teaching, learning, and research excellence at Mewar International University, Nigeria.
+
+Mission Statement
+Our mission is to enhance learning and research at Mewar International University, Nigeria by providing efficient access to library resources through a well-organized digital management system.We are committed to promoting academic growth, encouraging innovation, and ensuring that students, staff, and researchers can easily find and use information resources whenever they need them.
+
+Institutional repository
+Institutional repository need a library software DSpace to be hosted and the university academic director will have to have academic meeting to solicit articles from academic staff and formulate a policy it handled by committee the library staff will be trained on how to upload publication in it
+
+STAFF DIRECTORATE
+
++-----+----------------------------+--------+-------------------+----------------------------+
+| S/N | NAME                       | GENDER | STATE OF ORIGIN   | DESIGNATION
++-----+----------------------------+--------+-------------------+----------------------------+
+| 1   | Aliyu Dogara Mohammed      | Male   | Borno State       | University Librarian       |
+| 2   | Daniel Abel Edoih          | Male   | Benue State       | Graduate Assistant         |
+| 3   | Aishatu Abdulrahman        | Female | Adamawa State     | Higher Library Officer     |
+| 4   | Jimoh Lukman Braimah       | Male   | Edo State         | Director E-Library         |
+| 5   | Akor Gloria Ene            | Female | Benue State       | Library Officer I          |
+| 6   | Prisca Philip              | Female | Kaduna State      | Library Officer II         |
+| 7   | Mukhtar Sarki Ibrahim      | Male   | Kano State        | Library Officer I          |
++-----+----------------------------+--------+-------------------+----------------------------+
+
+Library catalog
+When users are redirected from a click from this library catalog ICON TO miu ERP then a click on library navigation in ERP another click on Book list ICON in same ERP here there is our library catalog then a search space is provided there for users to browse any books is been soughted by Author, title and subject
+
+
+Our Services
+1. Lending service
+2. Inter library loan service
+3. Referral service
+4. Research support assistant service
+5. Selective dissemination of information service
+6. Current awareness service
+7. Accessible digital resources service
+8. Reprograph service
+9. Bindery service
+10. Information and digital literacy service
+11. Reference service (real time and off time)
+
+Ask a Librarian 1
+Real time reference service
+
+Ask a Librarian 2
+Offline reference service
+
+Library account
+Our library email: miulibrary2025@gmail.com 
+
+Tutorial and guide
+Contents not ready
+
+Further Guide
+Binghamuni.edu.ng/library/index.php/about -us/about-the-library

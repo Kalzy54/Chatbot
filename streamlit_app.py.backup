@@ -1,0 +1,837 @@
+import os
+import streamlit as st
+import requests
+import hashlib
+from dotenv import load_dotenv
+
+load_dotenv()
+
+st.set_page_config(
+    page_title="LibraryChat",
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
+
+API_DEFAULT = os.environ.get("API_BASE", "http://127.0.0.1:8000/api")
+
+# Admin credentials from environment variables (secure)
+ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "admin")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "libraryChat2026")
+
+# Copilot-like CSS
+st.markdown("""
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+        background: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        color: #000;
+    }
+    [data-testid="stAppViewContainer"] { 
+        max-width: 900px; 
+        margin: 0 auto; 
+        padding: 0;
+    }
+    [data-testid="stSidebar"] { 
+        background: #1a1a1a;
+        width: 280px;
+        border-right: 1px solid #333333;
+    }
+    [data-testid="stSidebarNav"] { display: none; }
+    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+        color: #ffffff !important;
+    }
+    [data-testid="stSidebar"] h3 {
+        color: #0078D4 !important;
+        margin-top: 20px !important;
+        margin-bottom: 12px !important;
+        font-weight: 600 !important;
+    }
+    [data-testid="stSidebar"] h3:first-of-type {
+        margin-top: 0 !important;
+    }
+    [data-testid="stSidebar"] p {
+        color: #999999 !important;
+        font-size: 14px !important;
+    }
+    [data-testid="stSidebar"] hr {
+        margin: 16px 0 !important;
+        border-top: 1px solid #333333 !important;
+    }
+    [data-testid="stSidebar"] .stInfo {
+        background: rgba(0, 120, 212, 0.15) !important;
+        border: 1px solid rgba(0, 120, 212, 0.3) !important;
+        color: #69d3ff !important;
+    }
+    [data-testid="stSidebar"] .stInfo p {
+        color: #69d3ff !important;
+    }
+    [data-testid="stSidebar"] .stFileUploader {
+        color: #ffffff !important;
+    }
+    [data-testid="stSidebar"] .stFileUploader label {
+        color: #ffffff !important;
+        font-weight: 500 !important;
+    }
+    [data-testid="stSidebar"] input[type="file"] {
+        color: #ffffff !important;
+        background: #2a2a2a !important;
+    }
+    [data-testid="stSidebar"] .stTextInput input {
+        border-radius: 8px !important;
+        border: 1px solid #444444 !important;
+        background: #2a2a2a !important;
+        color: #ffffff !important;
+    }
+    [data-testid="stSidebar"] .stTextInput input::placeholder {
+        color: #666666 !important;
+    }
+    [data-testid="stSidebar"] .stTextInput input:focus {
+        border: 1px solid #0078D4 !important;
+        box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2) !important;
+    }
+    [data-testid="stSidebar"] .stButton button {
+        background: #0078D4 !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: none !important;
+        font-weight: 700 !important;
+    }
+    [data-testid="stSidebar"] .stButton button * {
+        background: transparent !important;
+        color: white !important;
+    }
+    [data-testid="stSidebar"] .stButton button:hover {
+        background: #1084D8 !important;
+        color: white !important;
+    }
+    .stButton > button {
+        background: #0078D4 !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: none !important;
+        font-weight: 700 !important;
+        font-size: 16px !important;
+    }
+    .stButton > button:hover {
+        background: #1084D8 !important;
+        color: white !important;
+    }
+    [data-testid="stSidebar"] .stButton button:hover {
+        background: #1084D8 !important;
+    }
+    [data-testid="stSidebar"] .stSuccess {
+        background: rgba(0, 200, 100, 0.15) !important;
+        border: 1px solid rgba(0, 200, 100, 0.3) !important;
+        color: #5edd9f !important;
+    }
+    [data-testid="stSidebar"] .stWarning {
+        background: rgba(255, 193, 7, 0.15) !important;
+        border: 1px solid rgba(255, 193, 7, 0.3) !important;
+        color: #ffc107 !important;
+    }
+    [data-testid="stSidebar"] .stError {
+        background: rgba(255, 67, 67, 0.15) !important;
+        border: 1px solid rgba(255, 67, 67, 0.3) !important;
+        color: #ff6b6b !important;
+    }
+    .main-header {
+        text-align: center;
+        padding: 40px 20px 20px;
+        background: linear-gradient(135deg, #0078D4 0%, #1084D8 100%);
+        color: white;
+    }
+    .main-header h1 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+    .main-header p {
+        font-size: 16px;
+        opacity: 0.9;
+    }
+    .messages-area {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px;
+        max-height: 60vh;
+        overflow-y: auto;
+        flex: 1;
+    }
+    .message {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 8px;
+    }
+    .message.user {
+        justify-content: flex-end;
+    }
+    .message.assistant {
+        justify-content: flex-start;
+    }
+    .bubble {
+        max-width: 75%;
+        padding: 12px 16px;
+        border-radius: 12px;
+        word-wrap: break-word;
+        line-height: 1.5;
+        font-size: 15px;
+    }
+    .bubble.user {
+        background: #0078D4;
+        color: #ffffff !important;
+        border-radius: 12px 4px 12px 12px;
+    }
+    .bubble.assistant {
+        background: #e8e8e8;
+        color: #1a1a1a !important;
+        border-radius: 4px 12px 12px 12px;
+    }
+    .input-area {
+        padding: 20px;
+        border-top: 1px solid #e0e0e0;
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+    }
+    .stTextInput input {
+        border-radius: 24px !important;
+        border: 1px solid #d0d0d0 !important;
+        padding: 12px 16px !important;
+        font-size: 15px !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        transition: all 0.2s !important;
+    }
+    .stTextInput input::placeholder {
+        color: #999999 !important;
+    }
+    }
+    .stTextInput input:focus {
+        border: 1px solid #0078D4 !important;
+        box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.1) !important;
+    }
+    .stButton button {
+        background: #0078D4 !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 20px !important;
+        padding: 10px 20px !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        transition: all 0.2s !important;
+    }
+    .stButton button * {
+        background: transparent !important;
+        color: white !important;
+    }
+    .stButton button:hover {
+        background: #106EBE !important;
+        transform: translateY(-1px) !important;
+    }
+    .welcome-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 70vh;
+        padding: 40px 20px;
+    }
+    .welcome-title {
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        background: linear-gradient(135deg, #0078D4, #1084D8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .welcome-subtitle {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 40px;
+    }
+    .suggestions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        width: 100%;
+        max-width: 800px;
+    }
+    /* Ensure all text is visible */
+    .stMarkdown, .stMarkdown p, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+        color: white !important;
+    }
+    [data-testid="stSidebar"] .stMarkdown, 
+    [data-testid="stSidebar"] .stMarkdown p, 
+    [data-testid="stSidebar"] .stMarkdown h1, 
+    [data-testid="stSidebar"] .stMarkdown h2, 
+    [data-testid="stSidebar"] .stMarkdown h3 {
+        color: #ffffff !important;
+    }
+    .suggestion-btn {
+        background: #ffffff;
+        border: 1px solid #d7d7d7;
+        border-radius: 12px;
+        padding: 16px;
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        color: #1a1a1a !important;
+    }
+    .suggestion-btn:hover {
+        border-color: #0078D4;
+        box-shadow: 0 2px 12px rgba(0, 120, 212, 0.15);
+        transform: translateY(-2px);
+    }
+    .suggestion-icon {
+        font-size: 28px;
+        margin-bottom: 8px;
+    }
+    .suggestion-title {
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 4px;
+    }
+    .suggestion-desc {
+        font-size: 13px;
+        color: #666;
+    }
+    .confidence-badge {
+        display: inline-block;
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        margin-top: 8px;
+        font-weight: 500;
+    }
+    .confidence-high {
+        background: #e6f5ff;
+        color: #0078D4;
+    }
+    .confidence-low {
+        background: #fff7e6;
+        color: #ff7d00;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Initialize session state
+if 'view' not in st.session_state:
+    st.session_state['view'] = 'welcome'
+if 'messages' not in st.session_state:
+    st.session_state['messages'] = []
+if 'api_base' not in st.session_state:
+    st.session_state['api_base'] = API_DEFAULT
+
+# Authentication state
+if 'authenticated' not in st.session_state:
+    st.session_state['authenticated'] = False
+if 'role' not in st.session_state:
+    st.session_state['role'] = 'public'  # 'public' or 'admin'
+if 'username' not in st.session_state:
+    st.session_state['username'] = None
+if 'show_login' not in st.session_state:
+    st.session_state['show_login'] = False
+
+# Theme state
+if 'theme' not in st.session_state:
+    st.session_state['theme'] = 'dark'  # 'dark' or 'light'
+
+# Apply light theme CSS if selected
+if st.session_state['theme'] == 'light':
+    st.markdown("""
+    <style>
+        /* Light theme - entire page */
+        [data-testid="stAppViewContainer"] { 
+            background: #ffffff !important;
+        }
+        body, [class*="st-"] { 
+            background-color: #ffffff !important;
+            color: #1a1a1a !important;
+        }
+        
+        /* Main content area */
+        [data-testid="stAppViewContainer"] > div:first-child {
+            background: #ffffff !important;
+        }
+        
+        /* Text and headings */
+        .stMarkdown, .stMarkdown p, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4 {
+            color: #1a1a1a !important;
+        }
+        
+        /* Input fields */
+        .stTextInput input, .stTextArea textarea, .stSelectbox select {
+            background: #f5f5f5 !important;
+            color: #1a1a1a !important;
+            border: 1px solid #d0d0d0 !important;
+        }
+        .stTextInput input::placeholder, .stTextArea textarea::placeholder {
+            color: #999999 !important;
+        }
+        
+        /* Buttons - Make them visible and styled */
+        .stButton > button {
+            background: #0078D4 !important;
+            color: white !important;
+            border: none !important;
+            font-weight: 700 !important;
+            font-size: 16px !important;
+        }
+        .stButton > button * {
+            background: transparent !important;
+            color: white !important;
+        }
+        .stButton > button:hover {
+            background: #1084D8 !important;
+            color: white !important;
+        }
+        
+        /* Chat messages */
+        .message.user .bubble.user {
+            background: #0078D4 !important;
+            color: white !important;
+        }
+        .message.bot .bubble.bot {
+            background: #e8e8e8 !important;
+            color: #1a1a1a !important;
+        }
+        
+        /* Expanders */
+        .stExpander {
+            background-color: #f5f5f5 !important;
+            border: 1px solid #d0d0d0 !important;
+        }
+        .stExpander button {
+            color: #1a1a1a !important;
+        }
+        .stExpander [role="button"] {
+            color: #1a1a1a !important;
+        }
+        
+        /* Dividers */
+        hr {
+            border-top: 1px solid #d0d0d0 !important;
+        }
+        
+        /* Info boxes */
+        .stInfo {
+            background: rgba(0, 120, 212, 0.1) !important;
+            border: 1px solid rgba(0, 120, 212, 0.3) !important;
+            color: #0078D4 !important;
+        }
+        .stInfo p {
+            color: #0078D4 !important;
+        }
+        
+        /* Error messages */
+        .stError {
+            background: rgba(255, 100, 100, 0.1) !important;
+            color: #cc0000 !important;
+        }
+        
+        /* Success messages */
+        .stSuccess {
+            background: rgba(0, 150, 100, 0.1) !important;
+            color: #009600 !important;
+        }
+        
+        /* Warning messages */
+        .stWarning {
+            background: rgba(255, 180, 0, 0.1) !important;
+            color: #ff8c00 !important;
+        }
+        
+        /* Sidebar light theme */
+        [data-testid="stSidebar"] { 
+            background: #f5f5f5 !important;
+        }
+        [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+            color: #1a1a1a !important;
+        }
+        [data-testid="stSidebar"] h3 {
+            color: #0078D4 !important;
+        }
+        [data-testid="stSidebar"] p {
+            color: #666666 !important;
+        }
+        [data-testid="stSidebar"] .stTextInput input {
+            border: 1px solid #d0d0d0 !important;
+            background: #ffffff !important;
+            color: #1a1a1a !important;
+        }
+        [data-testid="stSidebar"] .stButton > button {
+            background: #0078D4 !important;
+            color: white !important;
+            font-weight: 700 !important;
+        }
+        [data-testid="stSidebar"] .stButton > button * {
+            background: transparent !important;
+            color: white !important;
+        }
+        [data-testid="stSidebar"] .stButton > button:hover {
+            background: #1084D8 !important;
+            color: white !important;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+def add_message(role, text):
+    st.session_state['messages'].append({'role': role, 'text': text})
+
+# ============================================================================
+# AUTHENTICATION FUNCTIONS
+# ============================================================================
+
+def handle_authentication():
+    """Display login form and handle admin authentication."""
+    st.markdown("### 🔐 Admin Login")
+    
+    username = st.text_input("Username", key="login_username", placeholder="Enter your username")
+    password = st.text_input("Password", type="password", key="login_password", placeholder="Enter your password")
+    
+    if st.button("Login", use_container_width=True):
+        # Verify credentials
+        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+            st.session_state['authenticated'] = True
+            st.session_state['role'] = 'admin'
+            st.session_state['username'] = username
+            st.session_state['show_login'] = False
+            st.success("✅ Logged in as admin!")
+            st.rerun()
+        else:
+            st.error("❌ Invalid credentials. Please try again.")
+
+def render_login_button():
+    """Render admin login/logout button in sidebar."""
+    # Theme toggle at top
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.session_state.get("authenticated"):
+            st.markdown(f"**👤 {st.session_state['username']}**")
+    with col2:
+        if st.session_state.get("theme") == "dark":
+            if st.button("☀️ Light", use_container_width=True):
+                st.session_state['theme'] = 'light'
+                st.rerun()
+        else:
+            if st.button("🌙 Dark", use_container_width=True):
+                st.session_state['theme'] = 'dark'
+                st.rerun()
+    
+    st.divider()
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        pass
+    with col2:
+        if st.session_state.get("authenticated"):
+            if st.button("Logout", use_container_width=True):
+                st.session_state['authenticated'] = False
+                st.session_state['role'] = 'public'
+                st.session_state['username'] = None
+                st.session_state['show_login'] = False
+                st.rerun()
+        else:
+            if st.button("Admin Login", use_container_width=True):
+                st.session_state['show_login'] = True
+                st.rerun()
+    
+    st.divider()
+    
+    # Show login form if requested
+    if st.session_state.get("show_login") and not st.session_state.get("authenticated"):
+        handle_authentication()
+
+def render_sidebar_public():
+    """Render sidebar for public users (no Knowledge Base section)."""
+    # Settings section
+    with st.expander("⚙️ Settings", expanded=False):
+        new_api = st.text_input(
+            "API Base URL",
+            value=st.session_state['api_base'],
+            help="Configure custom API endpoint"
+        )
+        if new_api:
+            st.session_state['api_base'] = new_api
+    
+    # About section
+    with st.expander("ℹ️ About", expanded=False):
+        st.markdown("""
+        **LibraryChat** is an AI-powered chatbot system for your library.
+
+        **Features:**
+        - 📚 Browse Library Catalog
+        - 📋 Check Loan Status  
+        - 🔍 Search Research Databases
+        - 🏢 Find Study Spaces
+        - 📞 Library Services Info
+
+        **Powered by:**
+        - RAG (Retrieval-Augmented Generation)
+        - OpenAI GPT-4o-mini
+        - FAISS Vector Database
+        """)
+
+def render_sidebar_admin():
+    """Render sidebar for admin users (includes Knowledge Base upload)."""
+    # Knowledge Base section
+    with st.expander("📚 Knowledge Base", expanded=False):
+        st.markdown("**Upload Your Documents**")
+        uploaded_files = st.file_uploader(
+            "Choose files to upload",
+            type=["txt", "pdf", "md"],
+            accept_multiple_files=True,
+            label_visibility="collapsed"
+        )
+        
+        if uploaded_files:
+            if st.button("Process Documents", use_container_width=True):
+                import os
+                os.makedirs("data", exist_ok=True)
+                
+                progress = st.progress(0)
+                for i, file in enumerate(uploaded_files):
+                    # Save uploaded file
+                    file_path = f"data/{file.name}"
+                    with open(file_path, "wb") as f:
+                        f.write(file.getbuffer())
+                    progress.progress((i + 1) / len(uploaded_files))
+                
+                st.success(f"✅ {len(uploaded_files)} file(s) uploaded successfully!")
+                
+                # Trigger reload
+                with st.spinner("🔄 Reindexing knowledge base..."):
+                    try:
+                        reload_resp = requests.post(
+                            f"{st.session_state['api_base']}/reload",
+                            timeout=60
+                        )
+                        if reload_resp.status_code == 200:
+                            st.success("✅ Knowledge base reloaded! Your documents are now searchable.")
+                        else:
+                            st.error("❌ Failed to reload knowledge base. Try restarting the server.")
+                    except Exception as e:
+                        st.warning(f"⚠️ Could not auto-reload: {e}\n\nTry restarting the server manually.")
+        
+        st.markdown("**Or upload via drag-and-drop:**")
+        st.info("Place files in the `data/` folder and they'll be automatically processed.")
+    
+    # Settings section
+    with st.expander("⚙️ Settings", expanded=False):
+        new_api = st.text_input(
+            "API Base URL",
+            value=st.session_state['api_base'],
+            help="Configure custom API endpoint"
+        )
+        if new_api:
+            st.session_state['api_base'] = new_api
+    
+    # About section
+    with st.expander("ℹ️ About", expanded=False):
+        st.markdown("""
+        **LibraryChat** is an AI-powered chatbot system for your library.
+
+        **Features:**
+        - 📚 Browse Library Catalog
+        - 📋 Check Loan Status  
+        - 🔍 Search Research Databases
+        - 🏢 Find Study Spaces
+        - 📞 Library Services Info
+
+        **Admin Features:**
+        - 📤 Upload knowledge base documents
+        - ⚙️ Configure API settings
+
+        **Powered by:**
+        - RAG (Retrieval-Augmented Generation)
+        - OpenAI GPT-4o-mini
+        - FAISS Vector Database
+        """)
+
+
+def fetch_menu():
+    try:
+        r = requests.get(f"{st.session_state['api_base']}/menu", timeout=6)
+        return r.json().get('menu', [])
+    except Exception as e:
+        return ["Browse Catalog", "Loan Status", "Research Databases", "Study Spaces", "Library Services"]
+
+def call_guided(option):
+    try:
+        r = requests.post(f"{st.session_state['api_base']}/chat", json={"mode":"guided", "option": option}, timeout=15)
+        return r.json()
+    except Exception as e:
+        return {"answer": f"Service error: {e}", "confidence": 0.0}
+
+def call_ask(question):
+    try:
+        r = requests.post(f"{st.session_state['api_base']}/chat", json={"mode":"ask", "question": question}, timeout=30)
+        return r.json()
+    except Exception as e:
+        return {"answer": f"Service error: {e}", "confidence": 0.0}
+
+def render_messages():
+    """Render messages in chat bubbles."""
+    for msg in st.session_state['messages']:
+        role = msg['role']
+        text = msg['text']
+        
+        if role == 'user':
+            st.markdown(f"""
+            <div class="message user">
+                <div class="bubble user">{text}</div>
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            confidence_html = ""
+            # Check if confidence is in text
+            if "Confidence:" in text:
+                try:
+                    parts = text.split("Confidence:")
+                    text = parts[0].strip()
+                    conf_val = float(parts[1].strip().replace("%", "").strip())
+                    conf_class = "confidence-high" if conf_val >= 50 else "confidence-low"
+                    icon = "✓" if conf_val >= 50 else "⚠"
+                    confidence_html = f'<div class="confidence-badge {conf_class}">{icon} {int(conf_val)}% confident</div>'
+                except:
+                    pass
+            
+            st.markdown(f"""
+            <div class="message assistant">
+                <div class="bubble assistant">{text}{confidence_html}</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+# WELCOME VIEW
+if st.session_state['view'] == 'welcome':
+    # Header with logo
+    col_logo, col_header = st.columns([0.15, 0.85])
+    with col_logo:
+        try:
+            st.image('mewar logo.jpg', width=50)
+        except:
+            st.markdown('📚')
+    with col_header:
+        st.markdown("""
+        <div class="welcome-container">
+            <div class="welcome-title">LibraryChat</div>
+            <div class="welcome-subtitle">Your AI Library Assistant</div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("### What can I help you with?")
+    
+    opts = fetch_menu()
+    cols = st.columns(3)
+    
+    icons_map = {
+        "Browse Catalog": "📖",
+        "Loan Status": "📋",
+        "Research Databases": "🔍",
+        "Study Spaces": "🏫",
+        "Library Services": "👥",
+    }
+    
+    for idx, opt in enumerate(opts):
+        icon = icons_map.get(opt, "💬")
+        with cols[idx % 3]:
+            if st.button(f"{icon}\n{opt}", key=f"opt_{idx}", use_container_width=True):
+                add_message('user', opt)
+                with st.spinner(''):
+                    res = call_guided(opt)
+                add_message('bot', res.get('answer', 'No response'))
+                st.session_state['view'] = 'chat'
+                st.rerun()
+    
+    st.divider()
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("❓ Ask a Question", use_container_width=True):
+            st.session_state['view'] = 'chat'
+            st.rerun()
+
+# CHAT VIEW
+elif st.session_state['view'] == 'chat':
+    # Header with logo
+    col_logo, col_header = st.columns([0.15, 0.85])
+    with col_logo:
+        try:
+            st.image('mewar logo.jpg', width=50)
+        except:
+            st.markdown('📚')
+    with col_header:
+        st.markdown("""
+        <div class="main-header">
+            <h1>LibraryChat</h1>
+            <p>Your AI Library Assistant</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # Messages area
+    st.markdown('<div class="messages-area">', unsafe_allow_html=True)
+    
+    if st.session_state['messages']:
+        render_messages()
+    else:
+        st.markdown("""
+        <div style="text-align: center; color: #999; padding: 40px 20px;">
+            <p style="font-size: 18px;">Start a conversation</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    st.divider()
+    
+    # Input area
+    col1, col2 = st.columns([6, 1])
+    with col1:
+        user_input = st.text_input(
+            "Message LibraryChat...",
+            placeholder="Ask about books, hours, databases, borrowing...",
+            key="chat_input",
+            label_visibility="collapsed"
+        )
+    with col2:
+        if st.button("Send", use_container_width=True, key="send_btn"):
+            if user_input:
+                add_message('user', user_input)
+                with st.spinner(''):
+                    res = call_ask(user_input)
+                
+                answer = res.get('answer', 'No response')
+                conf = res.get('confidence', 0)
+                
+                if conf is not None and conf >= 0:
+                    answer = f"{answer}\n\nConfidence: {int(conf * 100)}%"
+                
+                add_message('bot', answer)
+                st.rerun()
+    
+    # Footer buttons
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        if st.button("← Back to Menu"):
+            st.session_state['view'] = 'welcome'
+            st.session_state['messages'] = []
+            st.rerun()
+    with col2:
+        if st.button("🔄 Clear Chat"):
+            st.session_state['messages'] = []
+            st.rerun()
+
+# Sidebar with authentication-based rendering
+with st.sidebar:
+    # Render login/logout button and login form
+    render_login_button()
+    
+    # Render appropriate sidebar based on user role
+    if st.session_state.get("role") == "admin":
+        render_sidebar_admin()
+    else:
+        render_sidebar_public()
+

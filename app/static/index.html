@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MewarChat</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>MewarChat</h1>
+        <button id="main-menu">Main Menu</button>
+      </header>
+      <section id="menu" class="card">
+        <h3>Guided Menu</h3>
+        <div id="options"></div>
+      </section>
+
+      <section id="chat" class="card">
+        <div id="messages"></div>
+        <div id="controls">
+          <input id="question" placeholder="Type your question..." />
+          <button id="ask">Ask</button>
+        </div>
+        <div id="loading" class="hidden">Loading...</div>
+      </section>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
