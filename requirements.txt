@@ -1,5 +1,7 @@
 fastapi==0.115.12
-uvicorn[standard]==0.34.0gunicorn==23.0.0openai>=1.8.3
+uvicorn[standard]==0.34.0
+gunicorn==23.0.0
+openai>=1.8.3
 sentence-transformers>=2.7.0
 faiss-cpu>=1.8.0
 python-dotenv==1.0.0
