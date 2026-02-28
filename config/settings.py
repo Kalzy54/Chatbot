@@ -26,7 +26,7 @@ if BaseSettings is None:
     # lightweight fallback when pydantic is not installed/usable
     class Settings:
         OPENAI_API_KEY: str = os.getenv('OPENAI_API_KEY', '')
-        EMBEDDING_MODEL: str = os.getenv('EMBEDDING_MODEL', 'sentence-transformers/all-mpnet-base-v2')
+        EMBEDDING_MODEL: str = os.getenv('EMBEDDING_MODEL', 'all-MiniLM-L6-v2')
         CHUNK_SIZE_TOKENS: int = int(os.getenv('CHUNK_SIZE_TOKENS', '900'))
         CHUNK_OVERLAP_TOKENS: int = int(os.getenv('CHUNK_OVERLAP_TOKENS', '300'))
         SIMILARITY_THRESHOLD: float = float(os.getenv('SIMILARITY_THRESHOLD', '0.35'))
@@ -36,7 +36,7 @@ if BaseSettings is None:
 else:
     class Settings(BaseSettings):
         OPENAI_API_KEY: str = ""
-        EMBEDDING_MODEL: str = "sentence-transformers/all-mpnet-base-v2"
+        EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
         CHUNK_SIZE_TOKENS: int = 900
         CHUNK_OVERLAP_TOKENS: int = 300
         SIMILARITY_THRESHOLD: float = 0.35
